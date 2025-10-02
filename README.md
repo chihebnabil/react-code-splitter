@@ -294,10 +294,4 @@ Contributions welcome! Please:
 
 ## License
 
-MIT © 2024
-
-## Support
-
-- 🐛 [Report bugs](https://github.com/yourusername/react-code-splitter/issues)
-- 💡 [Request features](https://github.com/yourusername/react-code-splitter/issues)
-- ⭐ Star the repo if you find it useful!
+MIT

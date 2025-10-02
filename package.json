@@ -1,6 +1,6 @@
 {
   "name": "react-code-splitter",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A jscodeshift transform for splitting React component files into subcomponents",  
   "main": "split-components.js",
   "bin": {

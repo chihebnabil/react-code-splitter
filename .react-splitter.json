@@ -1,0 +1,10 @@
+{
+  "outputDir": "./components",
+  "minElements": 3,
+  "parser": "tsx",
+  "ignore": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/build/**"
+  ]
+}

@@ -1,5 +1,17 @@
 # React Code Splitter
 
+## Features
+
+- **Interactive mode** - Preview and name each component before extraction (NEW!)
+- **Automatic extraction** - Intelligently identifies components to extract
+- **Smart prop detection** - Analyzes variable usage and passes correct props
+- **Beautiful CLI** - Clean, colorful output with progress indicators
+- **Fast** - Powered by jscodeshift for efficient AST manipulation
+- **Dry run mode** - Preview changes before applying
+- **Configurable** - Customize extraction thresholds and output
+- **Zero config** - Works out of the box with sensible defaults
+- **Supports** function components, arrow functions, and class componentstter
+
 > Automatically split React components into smaller, maintainable subcomponents using jscodeshift.
 
 [![npm version](https://img.shields.io/npm/v/react-code-splitter)](https://www.npmjs.com/package/react-code-splitter)
@@ -39,22 +51,65 @@ npx react-code-splitter auto src/App.jsx
 ## Quick Start
 
 ```bash
-# 1. Preview what will be extracted (recommended first step)
-react-split auto --dry src/App.jsx
+# 🎤 Interactive mode (RECOMMENDED - name each component yourself)
+react-split auto --interactive src/App.jsx
 
-# 2. Extract components
-react-split auto src/App.jsx
+# Preview in interactive mode
+react-split auto --interactive --dry src/App.jsx
 
-# 3. Extract specific component by selector
+# Or extract specific component manually
 react-split extract --selector header --name Header src/App.jsx
-
-# 4. Initialize configuration file
-react-split init
 ```
+
+> 💡 **Pro Tip**: Interactive mode solves the naming problem! The tool finds candidates, you give them meaningful names like `PaymentSummary` instead of generic `CardComponent20`.
 
 ## Usage
 
+### Interactive Mode (Recommended)
+
+```bash
+# Interactive extraction with custom names
+react-split auto --interactive src/App.jsx
+
+# Preview without writing files
+react-split auto --interactive --dry src/App.jsx
+
+# Adjust complexity threshold
+react-split auto --interactive --min-elements 5 src/App.jsx
+```
+
+**How it works:**
+1. Tool analyzes your component and finds extractable sections
+2. For each candidate, you see:
+   - JSX preview (first 5 lines)
+   - Element count
+   - Suggested name
+3. You decide: extract it or skip it
+4. If extracting, you provide a meaningful name
+5. Tool creates files and updates imports
+
+**Example interaction:**
+```
+📄 Processing: src/AdminPage.tsx
+
+✓ Found 3 extractable component(s)
+
+Candidate 1/3:
+──────────────────────────────────────────────────
+<div className="payment-summary">
+  <h3>Payment Details</h3>
+  <p>Total: ${amount}</p>
+  ...
+──────────────────────────────────────────────────
+(8 JSX elements)
+
+? Extract this component? Yes
+? Component name: PaymentSummary
+```
+
 ### Automatic Extraction
+
+> ⚠️ **Warning**: Automatic mode generates generic names like `CardComponent20`. Use interactive mode for better naming!
 
 ```bash
 # Process a single file
@@ -89,6 +144,7 @@ react-split extract --selector "user-profile" --name UserProfile src/App.jsx
 
 | Option | Default | Description |
 |--------|---------|-------------|
+| `--interactive, -i` | false | **Interactive mode - name each component** |
 | `--dry, -d` | false | Preview without writing files |
 | `--output-dir, -o` | `./components` | Output directory |
 | `--min-elements, -m` | `3` | Min JSX elements to extract |
@@ -256,8 +312,9 @@ export default Content;
 ## Limitations
 
 - Props are detected using heuristics (may need manual adjustment)
-- Complex state/context may require manual updates
+- Complex state/context may require manual updates  
 - Event handlers passed as props work but may need refinement
+- Interactive mode processes one file at a time for better UX
 
 ## Advanced Usage
 

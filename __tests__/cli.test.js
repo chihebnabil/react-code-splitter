@@ -15,7 +15,7 @@ describe('CLI Integration Tests', () => {
   
   it('should show version', () => {
     const output = execSync(`node ${cliPath} --version`).toString();
-    expect(output).toContain('1.0.0');
+    expect(output).toContain('2.0.1');
   });
   
   it('should run auto command with --help', () => {

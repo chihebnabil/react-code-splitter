@@ -1,7 +1,7 @@
 {
   "name": "react-code-splitter",
-  "version": "1.0.3",
-  "description": "A jscodeshift transform for splitting React component files into subcomponents",  
+  "version": "2.0.1",
+  "description": "Interactive jscodeshift transform for splitting React component files into subcomponents",
   "main": "split-components.js",
   "bin": {
     "react-split": "./bin/cli.js",
@@ -41,6 +41,7 @@
   "files": [
     "bin/",
     "split-components.js",
+    "split-components-interactive.js",
     "split-by-selector.js",
     "utils.js",
     "README.md",
@@ -49,6 +50,8 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^11.1.0",
+    "glob": "^7.2.3",
+    "inquirer": "^8.2.5",
     "jscodeshift": "^0.15.0",
     "ora": "^5.4.1"
   },
